@@ -2,39 +2,12 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, MapPin, Github, Linkedin, Mail, CheckCircle } from 'lucide-react'
 import SectionTitle from '../ui/SectionTitle'
-// import emailjs from '@emailjs/browser'
+
 
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault()
-  //   setStatus('sending')
-
-  //   try {
-  //     await emailjs.send(
-  //       'service_572992b',
-  //       'template_67bal1c',
-  //       {
-  //         from_name: form.name,
-  //         from_email: form.email,
-  //         message: form.message,
-  //       },
-  //       '9v0V6-BeOS4X4zaGH'
-  //     )
-
-  //     setStatus('sent')
-  //     setTimeout(() => {
-  //       setStatus('idle')
-  //       setForm({ name: '', email: '', message: '' })
-  //     }, 3000)
-  //   } catch (error) {
-  //     console.error(error)
-  //     setStatus('idle')
-  //     alert('Failed to send message. Please try again.')
-  //   }
-  // }
 
   return (
     <section id="contact" className="relative py-24 px-6">
@@ -103,14 +76,20 @@ export default function ContactSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           >
-            <form action="https://formsubmit.co/codebiswaprakash07@gmail.com" method="post" className="glass rounded-3xl p-8 space-y-5">
+            <form
+              action="https://formsubmit.co/ajax/codebiswaprakash07@gmail.com"
+              method="POST"
+              className="glass rounded-3xl p-8 space-y-5"
+            >
               <input type="hidden" name="_subject" value="New Portfolio Contact!" />
               <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="table" />
               <input
                 type="hidden"
                 name="_next"
-                value="https://Biswaprakash-portfolio.vercel.app/thank-you"
+                value="https://biswaprakash-portfolio.vercel.app/?success=true"
               />
+
               <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/40 to-transparent rounded-t-3xl" />
 
               {[
@@ -122,7 +101,10 @@ export default function ContactSection() {
                     {field.label}
                   </label>
                   <input
-                    id={field.id} type={field.type} placeholder={field.placeholder}
+                    name={field.id}
+                    id={field.id}
+                    type={field.type}
+                    placeholder={field.placeholder}
                     value={form[field.id as 'name' | 'email']}
                     onChange={(e) => setForm({ ...form, [field.id]: e.target.value })}
                     required
@@ -136,7 +118,10 @@ export default function ContactSection() {
                   Message
                 </label>
                 <textarea
-                  id="message" rows={4} placeholder="Let's build something amazing together..."
+                  name="message"
+                  id="message"
+                  rows={4}
+                  placeholder="Let's build something amazing together..."
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   required
@@ -146,16 +131,11 @@ export default function ContactSection() {
 
               <motion.button
                 type="submit"
-                disabled={status !== 'idle'}
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary text-white font-body font-medium transition-all hover:shadow-xl hover:shadow-primary/30 disabled:opacity-60"
+                className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl bg-primary text-white font-body font-medium transition-all hover:shadow-xl hover:shadow-primary/30"
               >
-                {status === 'idle' && <><Send size={16} /> Send Message</>}
-                {status === 'sending' && (
-                  <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> Sending...</>
-                )}
-                {status === 'sent' && <><CheckCircle size={16} /> Message Sent!</>}
+                <Send size={16} /> Send Message
               </motion.button>
             </form>
           </motion.div>
