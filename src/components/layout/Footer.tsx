@@ -1,5 +1,7 @@
 import { Github, Linkedin, Mail, Heart } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { FaDiscord, FaInstagram } from 'react-icons/fa'
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -15,9 +17,12 @@ export default function Footer() {
 
           <div className="flex items-center gap-4">
             {[
-              { icon: <Github size={18} />, href: 'https://github.com/', label: 'GitHub' },
-              { icon: <Linkedin size={18} />, href: 'https://linkedin.com/', label: 'LinkedIn' },
-              { icon: <Mail size={18} />, href: 'mailto:biswaprakash@email.com', label: 'Email' },
+              { icon: <Github size={18} />, href: 'https://github.com/codebiswa07', label: 'GitHub' },
+              { icon: <Linkedin size={18} />, href: 'https://linkedin.com/in/biswaprakash-sahoo-a0050a361', label: 'LinkedIn' },
+              { icon: <Mail size={18} />, href: 'mailto:codebiswaprakash07@gmail.com', label: 'Email' },
+              { icon: <FaDiscord size={20} />, href: 'https://discord.com/users/biswaprakash321', label: 'Discord' },
+              { icon: <FaInstagram size={20} />, href: 'https://www.instagram.com/biswaprakash_2515/', label: 'Instagram' },
+              { icon: <FaXTwitter size={20} />, href: 'https://X.com/biswaprakash077', label: 'X' },
             ].map((s) => (
               <motion.a
                 key={s.label}
