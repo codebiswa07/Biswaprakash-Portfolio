@@ -111,6 +111,7 @@ export const skills: Skill[] = [
   { name: 'React', category: 'frontend', color: '#61DAFB' },
   { name: 'TypeScript', category: 'frontend', color: '#3178C6' },
   { name: 'JavaScript', category: 'frontend', color: '#F7DF1E' },
+  { name: 'Flutter', category: 'frontend', color: '#1578B6' },
   { name: 'HTML5', category: 'frontend', color: '#E34F26' },
   { name: 'CSS3', category: 'frontend', color: '#1572B6' },
   { name: 'Next.js', category: 'frontend', color: '#FFFFFF' },
@@ -157,6 +158,6 @@ export const achievements: Achievement[] = [
   { id: 'hackathon-1', title: 'Hackathon Participant', description: 'Participate in a coding hackathon', icon: '⚡', unlocked: false },
   { id: 'opensource-1', title: 'Open Source Contributor', description: 'Make your first open source contribution', icon: '🌍', unlocked: false },
   { id: 'internship-1', title: 'First Internship', description: 'Land your first professional internship', icon: '💼', unlocked: false },
-  { id: 'project-5', title: '5 Projects Shipped', description: 'Successfully launch 5 complete projects', icon: '🚀', unlocked: true },
+  { id: 'project-5', title: '5+ Projects Shipped', description: 'Successfully launch 5+ complete projects', icon: '🚀', unlocked: true },
   { id: 'fullstack', title: 'Full Stack Mastery', description: 'Build and deploy a complete full-stack application', icon: '🔮', unlocked: true },
 ]
