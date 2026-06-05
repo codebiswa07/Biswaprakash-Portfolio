@@ -214,3 +214,8 @@ section {
     inset 1px 1px 3px rgba(255, 255, 255, 0.6),
     inset -2px -2px 5px rgba(52, 211, 153, 0.3);
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}

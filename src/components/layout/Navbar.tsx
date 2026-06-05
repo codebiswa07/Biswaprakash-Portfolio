@@ -72,6 +72,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
+          type="button"
           className="md:hidden text-white p-2"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
@@ -92,15 +93,46 @@ export default function Navbar() {
             <ul className="p-4 flex flex-col gap-1">
               {navItems.map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="block px-4 py-3 text-sm text-subtext hover:text-white rounded-xl hover:bg-white/5 transition-colors"
-                    onClick={() => setMobileOpen(false)}>
+                  <a
+                    href={item.href}
+                    className="block px-4 py-3 text-sm text-subtext hover:text-white rounded-xl hover:bg-white/5 transition-colors"
+                    onClick={(e) => {
+                      e.preventDefault()
+
+                      const target = document.querySelector(item.href)
+                      if (target) {
+                        target.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start',
+                        })
+                      }
+
+                      setMobileOpen(false)
+                    }}
+                  >
                     {item.label}
                   </a>
                 </li>
               ))}
+
               <li className="mt-2">
-                <a href="#contact" onClick={() => setMobileOpen(false)}
-                  className="block px-4 py-3 text-sm font-medium text-white bg-primary rounded-xl text-center">
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault()
+
+                    const target = document.querySelector('#contact')
+                    if (target) {
+                      target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start',
+                      })
+                    }
+
+                    setMobileOpen(false)
+                  }}
+                  className="block px-4 py-3 text-sm font-medium text-white bg-primary rounded-xl text-center"
+                >
                   Hire Me
                 </a>
               </li>

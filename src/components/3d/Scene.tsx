@@ -1,33 +1,29 @@
-import { Canvas } from '@react-three/fiber'
-import { Environment, Stars, AdaptiveDpr, PerformanceMonitor } from '@react-three/drei'
-import { Suspense, useRef, useState } from 'react'
-import InnovationCrystal from './InnovationCrystal'
+import { Canvas } from "@react-three/fiber"
+import { OrbitControls, Environment } from "@react-three/drei"
+import { Model as StudentStudy } from "./StudentStudy"
+// import CyberParticles from "./CyberParticles"
 
-interface Props {
-  mouseX?: number; mouseY?: number
+type SceneProps = {
+  mouseX?: number
+  mouseY?: number
 }
 
-export default function Scene({ mouseX = 0, mouseY = 0 }: Props) {
-  const [dpr, setDpr] = useState(1.5)
-
+export default function Scene({ mouseX = 0, mouseY = 0 }: SceneProps) {
   return (
-    <Canvas
-      camera={{ position: [0, 0, 6], fov: 45 }}
-      dpr={dpr}
-      style={{ background: 'transparent' }}
-      gl={{ antialias: true, alpha: true }}
-    >
-      <PerformanceMonitor onDecline={() => setDpr(1)} onIncline={() => setDpr(1.5)} />
-      <AdaptiveDpr pixelated />
+    <div className="w-full h-full">
+      <Canvas camera={{ position: [3, 2, 5], fov: 45 }} shadows>
+        {/* <pointLight position={[0, 2, 2]} color="#00ff88" intensity={1.5} />
+        <ambientLight intensity={0.4} /> */}
+        <ambientLight intensity={0.8} />
+        <directionalLight position={[5, 5, 5]} intensity={2} castShadow />
+        {/* <CyberParticles /> */}
+        <StudentStudy
+          scale={1}
+          position={[mouseX * 0.2, -1 + mouseY * 0.1, 0]}
+        />
 
-      <Suspense fallback={null}>
-        <InnovationCrystal mouseX={mouseX} mouseY={mouseY} />
-        <Stars radius={80} depth={50} count={3000} factor={3} fade speed={0.5} />
-        <Environment preset="city" />
-      </Suspense>
-
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[5, 5, 5]} intensity={1} />
-    </Canvas>
+        <OrbitControls enableZoom={false} />
+      </Canvas>
+    </div>
   )
 }
